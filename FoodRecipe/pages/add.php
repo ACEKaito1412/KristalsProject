@@ -1,11 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-include("connection.php");
-
-
 $categoryOptions = [];
 $categoryQuery = "SELECT category, category_image FROM category";
 $categoryResult = $conn->query($categoryQuery);
@@ -76,52 +69,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Jade's Food Recipe</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <?php include("partials/nav.header.php"); ?>
-    <div class="container">
-        <h2>Add Category</h2>
-        <div class="col-md-6 mt-2">
-            <img id="imagePreview" src="#" alt="Image Preview" style="max-width: 200px; height: 200px; display: none; border: solid 1px;">
+<div class="container">
+    <h2>Add Category</h2>
+    <div class="col-md-6 mt-2">
+        <img id="imagePreview" src="#" alt="Image Preview" style="max-width: 200px; height: 200px; display: none; border: solid 1px;">
+    </div>
+    <form class="form" method="post" enctype="multipart/form-data">
+        <div class="input-group col-md-6">
+            <input type="text" class="form-control" name="category" placeholder="Enter Category">
+            <input type="file" class="form-control" name="category_image" accept="image/*" onchange="previewImage(event)">
         </div>
-        <form class="form" method="post" enctype="multipart/form-data">
-            <div class="input-group col-md-6">
-                <input type="text" class="form-control" name="category" placeholder="Enter Category">
-                <input type="file" class="form-control" name="category_image" accept="image/*" onchange="previewImage(event)">
-            </div>
-            <div class="input-group col-md-6 mt-2 d-flex justify-content-end">
-                <button class="btn btn-success" type="submit" name="submit">Add Category</button>
-            </div>
-        </form>
-        <script>
-            function previewImage(event) {
-                var image = document.getElementById('imagePreview');
-                image.style.display = 'block';
-                image.src = URL.createObjectURL(event.target.files[0]);
-            }
-        </script>
-    </div>
-    <h2>Category</h2>
+        <div class="input-group col-md-6 mt-2 d-flex justify-content-end">
+            <button class="btn btn-success" type="submit" name="submit">Add Category</button>
+        </div>
+    </form>
+    <script>
+        function previewImage(event) {
+            var image = document.getElementById('imagePreview');
+            image.style.display = 'block';
+            image.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
+</div>
 
-    <!-- Display categories and images -->
-    <div class="row mt-3 justify-content-center">
-        <?php foreach ($categoryOptions as $category) { ?>
-            <div class="card m-1 col-md-3 center">
-                <img src="<?php echo $category['category_image']; ?>" class="card-img-top mx-auto mt-2" alt="<?php echo $category['category']; ?>" 
-                style="max-width: 200px; object-fit:contain; ">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $category['category']; ?></h5>
-                </div>
+<h2>Category</h2>
+
+<!-- Display categories and images -->
+<div class="row mt-3 justify-content-center">
+    <?php foreach ($categoryOptions as $category) { ?>
+        <div class="card m-1 col-md-3 center">
+            <img src="<?php echo $category['category_image']; ?>" class="card-img-top mx-auto mt-2" alt="<?php echo $category['category']; ?>" style="max-width: 200px; object-fit:contain; ">
+            <div class="card-body">
+                <h5 class="card-title"><?php echo $category['category']; ?></h5>
             </div>
-        <?php } ?>
-    </div>
-</body>
-</html>
+        </div>
+    <?php } ?>
+</div>
