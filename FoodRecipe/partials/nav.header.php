@@ -1,7 +1,5 @@
-<?php
-?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<a class="navbar-brand" href="index.php">
+  <a class="navbar-brand" href="?">
     <img src="./img/logo-color.svg" width="35" height="35" class="d-inline-block align-top" alt="">
     Taste Of Quarantine
   </a>
@@ -12,18 +10,18 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="?pages=home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="food.php">Link</a>
+        <a class="nav-link" href="?pages=category">Category</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="add.php">Add Category</a>
-          <a class="dropdown-item" href="add-recipe.php">Add Recipe</a>
+          <a class="dropdown-item" href="?pages=add">Add Category</a>
+          <a class="dropdown-item" href="?pages=recipe">Add Recipe</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
