@@ -4,7 +4,7 @@
   // error_reporting(E_ALL);
 
   include("./server/connection.php");
-  include('./server/page-handler.php')
+  include('./server/page-connector.php')
   ?>
 
  <!DOCTYPE html>
